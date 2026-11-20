@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegridadWeb | Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/">IntegridadWeb</a>
+      <div class="nav-links">
+        <a href="/register.html">Registro</a>
+        <a href="/login.html" aria-current="page">Login</a>
+        <a href="/comments.html">Comentarios</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main form-layout">
+    <section class="form-card">
+      <p class="eyebrow">Sesión protegida</p>
+      <h1>Inicio de sesión</h1>
+      <form id="loginForm" novalidate>
+        <label for="correo">Correo</label>
+        <input id="correo" name="correo" type="email" maxlength="120" autocomplete="email" required>
+
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" minlength="8" maxlength="64" autocomplete="current-password" required>
+
+        <button class="btn btn-primary full-width" type="submit">Entrar</button>
+      </form>
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <p class="form-footer">¿No tienes cuenta? <a href="/register.html">Regístrate</a></p>
+    </section>
+  </main>
+  <!-- <script src="/js/auth.js?v=2"></script> -->
+  <script src="/js/auth.js"></script>
+</body>
+</html>

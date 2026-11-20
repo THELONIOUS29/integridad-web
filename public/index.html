@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegridadWeb | Inicio</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/">IntegridadWeb</a>
+      <div class="nav-links">
+        <a href="/register.html">Registro</a>
+        <a href="/login.html">Login</a>
+        <a href="/comments.html">Comentarios</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Integridad de Datos y Documentación S-SDLC</p>
+        <h1>Controles verificables para entradas, sesiones y comentarios seguros.</h1>
+        <p>
+          Aplicación construida con Node.js, Express y Supabase/PostgreSQL para demostrar validación,
+          sanitización, prevención de SQL Injection, y prevención de XSS.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/register.html">Crear cuenta</a>
+          <a class="btn btn-secondary" href="/login.html">Iniciar sesión</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid" aria-label="Controles principales">
+      <article class="info-card">
+        <span class="card-label">NIST SI-10</span>
+        <h2>Validación de entradas</h2>
+        <p>Los formularios restringen tipos, longitud, formato y caracteres antes de procesar datos.</p>
+      </article>
+      <article class="info-card">
+        <span class="card-label">ISO 8.28</span>
+        <h2>Codificación segura</h2>
+        <p>El backend usa bcrypt, sesiones HTTP-only, Helmet y consultas con el cliente oficial de Supabase.</p>
+      </article>
+      <article class="info-card">
+        <span class="card-label">ISO 5.37</span>
+        <h2>Documentación</h2>
+        <p>La matriz de cumplimiento, el manual y las evidencias guían la revisión académica.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

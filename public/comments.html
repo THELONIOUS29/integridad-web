@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegridadWeb | Comentarios</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/">IntegridadWeb</a>
+      <div class="nav-links">
+        <a href="/register.html">Registro</a>
+        <a href="/login.html">Login</a>
+        <a href="/comments.html" aria-current="page">Comentarios</a>
+        <button id="logoutButton" class="nav-button" type="button">Cerrar sesión</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main comments-layout">
+    <section class="comments-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Comentarios seguros</p>
+          <h1>Publicaciones</h1>
+        </div>
+        <p id="userBadge" class="user-badge"></p>
+      </div>
+
+      <form id="commentForm" class="comment-form" novalidate>
+        <label for="comentario">Comentario</label>
+        <textarea id="comentario" name="comentario" minlength="3" maxlength="300" rows="4" required></textarea>
+        <div class="form-row">
+          <span id="counter" class="counter">0/300</span>
+          <button class="btn btn-primary" type="submit">Publicar</button>
+        </div>
+      </form>
+
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+      <div id="commentsList" class="comments-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="/js/comments.js"></script>
+</body>
+</html>

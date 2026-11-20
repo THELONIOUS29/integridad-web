@@ -1,0 +1,35 @@
+{
+  "name": "integridadweb",
+  "version": "1.0.0",
+  "description": "Aplicación web segura para el Tema 5: Integridad de Datos y Documentación S-SDLC.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "ssdlc",
+    "seguridad",
+    "supabase",
+    "xss",
+    "sql-injection"
+  ],
+  "author": "IntegridadWeb",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^12.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "sanitize-html": "^2.13.1",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
