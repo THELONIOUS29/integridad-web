@@ -17,3 +17,8 @@ El backend usa sesiones propias y bcrypt; la clave de servidor omite RLS, por lo
 ## Alcance
 
 Esta copia de portafolio recibió correcciones de configuración y XSS. Antes de producción requiere pruebas de integración, revisión de dependencias, límites de solicitudes, un almacén de sesiones persistente y revisión de permisos en el servicio real. No se modificaron bases de datos ni aplicaciones desplegadas durante la auditoría. La aplicación original del PC se conservó.
+
+
+## Publicación y configuración
+
+Código compartido para portafolio profesional. No incluye credenciales del negocio. Preparación de seguridad del 20 de noviembre de 2026; no equivale a una validación de producción.
