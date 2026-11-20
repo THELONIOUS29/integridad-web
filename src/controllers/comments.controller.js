@@ -3,10 +3,7 @@ const { logger, sanitizePlainText } = require("../security/security");
 
 const createComment = async (req, res, next) => {
   try {
-    //const comentario = sanitizePlainText(req.body.comentario);
-    
-    // DEMOSTRACIÓN VULNERABLE DE XSS
-    const comentario = req.body.comentario.trim();
+    const comentario = sanitizePlainText(req.body.comentario);
 
     if (comentario.length < 3 || comentario.length > 300) {
       logger.warn("error_validacion", "Comentario fuera de rango después de sanitizar");

@@ -49,10 +49,7 @@ const createCommentNode = (comment) => {
   // Descripción: textContent evita que el navegador interprete el comentario como HTML ejecutable.
   
 
-  //body.textContent = comment.comentario;
-
-  // DEMOSTRACIÓN VULNERABLE DE XSS
-  body.innerHTML = comment.comentario;
+  body.textContent = comment.comentario;
 
   header.append(author, date);
   article.append(header, body);

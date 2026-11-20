@@ -5,7 +5,6 @@ const express = require("express");
 
 const authRoutes = require("./routes/auth.routes");
 const commentsRoutes = require("./routes/comments.routes");
-//const sqliDemoRoutes = require("./routes/sqli-demo.routes");
 const { configureSecurity, errorHandler } = require("./security/security");
 
 const app = express();
@@ -17,10 +16,7 @@ configureSecurity(app, { port: PORT, isProduction });
 
 
 
-// Laboratorio temporal de SQLi con datos ficticios.
-/*console.log("Archivo SQLi:", require.resolve("./routes/sqli-demo.routes"));
-console.log("Tipo exportado:", typeof sqliDemoRoutes);
-app.use("/api/demo-sqli", sqliDemoRoutes);*/
+
 
 
 

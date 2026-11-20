@@ -45,14 +45,15 @@ const configureSecurity = (app, { port, isProduction }) => {
   app.use(express.json({ limit: "10kb" }));
   app.use(express.urlencoded({ extended: false, limit: "10kb" }));
 
-  if (!process.env.SESSION_SECRET) {
-    console.warn("[IntegridadWeb] SESSION_SECRET no está configurado.");
+  const sessionSecret = process.env.SESSION_SECRET || "";
+  if (sessionSecret.length < 32 || /CONFIGURAR|CHANGE.?ME|EXAMPLE|dev-only/i.test(sessionSecret)) {
+    throw new Error("Configure SESSION_SECRET con un valor aleatorio de al menos 32 caracteres.");
   }
 
   app.use(
     session({
       name: "integridadweb.sid",
-      secret: process.env.SESSION_SECRET || "dev-only-change-this-secret",
+      secret: sessionSecret,
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -209,7 +210,7 @@ const validateComment = [
     .withMessage("El comentario debe ser texto.")
     .bail()
     .trim()
-    //.custom(rejectDangerousText)
+    .custom(rejectDangerousText)
     .isLength({ min: 3, max: 300 })
     .withMessage("El comentario debe tener entre 3 y 300 caracteres."),
   handleValidation

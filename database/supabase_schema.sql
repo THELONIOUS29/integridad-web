@@ -49,20 +49,9 @@ create index if not exists idx_usuarios_correo on usuarios(correo);
 create index if not exists idx_comentarios_created_at on comentarios(created_at desc);
 create index if not exists idx_comentarios_usuario_id on comentarios(usuario_id);
 
--- Row Level Security en Supabase:
--- Para desarrollo académico con el cliente usado por el backend, RLS se desactiva explícitamente
--- para evitar que la anon key bloquee registro, login y comentarios.
-alter table usuarios disable row level security;
-alter table comentarios disable row level security;
-alter table audit_logs disable row level security;
-
--- En producción se recomienda activar RLS y acceder desde backend con service role protegida en servidor.
---
--- alter table usuarios enable row level security;
--- alter table comentarios enable row level security;
--- alter table audit_logs enable row level security;
---
--- Ejemplo de políticas para producción, ajustadas a Supabase Auth si se migra a auth.uid():
--- create policy "usuarios_select_owner" on usuarios for select using (auth.uid() = id);
--- create policy "comentarios_select_authenticated" on comentarios for select to authenticated using (true);
--- create policy "comentarios_insert_owner" on comentarios for insert to authenticated with check (auth.uid() = usuario_id);
+-- Acceso directo de clientes anónimos/autenticados denegado por defecto.
+-- El backend usa una clave privada de servidor y controla el propietario de cada operación.
+alter table usuarios enable row level security;
+alter table comentarios enable row level security;
+alter table audit_logs enable row level security;
+revoke all on table usuarios, comentarios, audit_logs from anon, authenticated;

@@ -1,15 +1,19 @@
 const { createClient } = require("@supabase/supabase-js");
 
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn("[IntegridadWeb] Configure SUPABASE_URL y SUPABASE_ANON_KEY en el archivo .env.");
+const serverKey = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+let isServerKey = /^sb_secret_[A-Za-z0-9_-]{20,}$/.test(serverKey);
+if (!isServerKey && serverKey.split(".").length === 3) {
+  try {
+    const payload = JSON.parse(Buffer.from(serverKey.split(".")[1], "base64url").toString("utf8"));
+    isServerKey = payload.role === "service_role";
+  } catch { isServerKey = false; }
+}
+if (!supabaseUrl || !/^https:\/\//.test(supabaseUrl) || !isServerKey) {
+  throw new Error("Configure SUPABASE_URL y una clave privada de servidor en SUPABASE_SECRET_KEY o SUPABASE_SERVICE_ROLE_KEY.");
 }
 
-// Control aplicado: Consultas seguras con cliente oficial Supabase
-// Norma: ISO 27002:2022 8.28 / NIST SI-10
-// Descripción: Se usa el Query Builder oficial para evitar concatenación manual de SQL.
-const supabase = createClient(supabaseUrl || "https://example.supabase.co", supabaseAnonKey || "anon-key");
-
-module.exports = supabase;
+// Cliente exclusivo del servidor. Nunca exportar esta clave al navegador o al repositorio.
+module.exports = createClient(supabaseUrl, serverKey, {
+  auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+});
